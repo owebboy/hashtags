@@ -28,10 +28,114 @@ a {
 #your-hashtag {
   width: 300px;
 }
+.button {
+  background: #7fdbff;
+}
+.button:hover {
+  background: #fff;
+}
 .creepy {
   color: #666;
 }
 .hashtag {
   font-weight: bold;
   font-size: 18px;
+}
+.hashtag,
+.creepy {
+  margin: 0;
+}
+/*
+
+  Simple Grid
+  @owebboy
+
+*/
+.container {
+  width: 100%;
+  margin: auto;
+  overflow: hidden;
+}
+.responsive {
+  max-width: 100%;
+}
+.col-1 {
+  width: 16.666666666666664%;
+  display: inline-block;
+  float: left;
+  margin-left: 0%;
+  margin-right: 0%;
+}
+.col-2 {
+  width: 33.33333333333333%;
+  display: inline-block;
+  float: left;
+  margin-left: 0%;
+  margin-right: 0%;
+}
+.col-3 {
+  width: 50%;
+  display: inline-block;
+  float: left;
+  margin-left: 0%;
+  margin-right: 0%;
+}
+.col-4 {
+  width: 66.66666666666666%;
+  display: inline-block;
+  float: left;
+  margin-left: 0%;
+  margin-right: 0%;
+}
+.col-5 {
+  width: 83.33333333333334%;
+  display: inline-block;
+  float: left;
+  margin-left: 0%;
+  margin-right: 0%;
+}
+.col-6 {
+  width: 100%;
+  display: inline-block;
+  float: left;
+  margin-left: 0%;
+  margin-right: 0%;
+}
+@media screen and (max-width: 600px) {
+  .col-1 {
+    float: none;
+    display: block;
+    width: 100%;
+    margin: 0;
+  }
+  .col-2 {
+    float: none;
+    display: block;
+    width: 100%;
+    margin: 0;
+  }
+  .col-3 {
+    float: none;
+    display: block;
+    width: 100%;
+    margin: 0;
+  }
+  .col-4 {
+    float: none;
+    display: block;
+    width: 100%;
+    margin: 0;
+  }
+  .col-5 {
+    float: none;
+    display: block;
+    width: 100%;
+    margin: 0;
+  }
+  .col-6 {
+    float: none;
+    display: block;
+    width: 100%;
+    margin: 0;
+  }
 }

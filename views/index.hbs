@@ -11,6 +11,10 @@
 <section class="hashtags">
   <h2>Hashtags</h2>
   {{#each list}}
-  <p><span class="hashtag">#{{hashtag}}</span> <br> <span class="creepy">{{id}}</span></p>
+  <div class="container">
+    <div class="col-2"><p class="hashtag">#{{hashtag}}</p> <p class="creepy">{{id}}</p></div>
+    <div class="col-4">
+      <p><a href="/like/{{id}}" class="like">Like</a> <span class="labelLike">{{likes}}</span></p>
+    </div>
   {{/each}}
 </section>

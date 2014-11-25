@@ -7,7 +7,8 @@ mongoose.connect('mongodb://yolo:yolo@proximus.modulusmongo.net:27017/juhuTe7t')
 
 var hashTagSchema = mongoose.Schema({
   hashtag: String,
-  created: Date
+  created: Date,
+  likes: Number
 });
 
 var hashTag = mongoose.model('hashTag', hashTagSchema);
@@ -24,17 +25,36 @@ router.get('/', function(req, res) {
 /* POST yolo page */
 router.post('/yolo', function(req, res) {
   var yolo = req.body.yourHashtag;
-  var yoloTag = new hashTag({ hashtag: yolo, created: new Date });
+  var yoloTag = new hashTag({ hashtag: yolo, created: new Date, likes: 0 });
   yoloTag.save( function(err, yoloTag) {
     if (err) return console.log(err);
   })
-  res.render('yolo', { yolo: yolo });
+  res.redirect('/');
 });
 
 /* START OVER PATH - DELETES ALL HASHTAGS */
 router.get('/del/all', function(req, res) {
   hashTag.remove({}, function(err) {
     res.redirect('/');
+  });
+});
+
+/* Delete single hashtag */
+router.get('/del/:id', function(req, res) {
+  hashTag.find({ _id: req.params.id }).remove().exec(function() {
+    res.redirect('/');
+  });
+});
+
+/* Like single hashtag */
+router.get('/like/:id', function(req, res) {
+  var like = hashTag.where({ _id: req.params.id });
+  like.findOne(function (err, hashtag) {
+    var liked = hashtag.likes;
+    hashTag.findOneAndUpdate({ _id: req.params.id }, { likes: liked + 1 }, { upsert: true }, function(err) {
+      if (err) return console.log(err);
+      res.redirect('/');
+    });
   });
 });
 
