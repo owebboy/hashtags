@@ -1,0 +1,37 @@
+body {
+  padding: 50px;
+  font: 14px monospace;
+}
+a {
+  color: #666;
+}
+.button,
+#your-hashtag {
+  font-family: monospace;
+  border: 1px solid #333;
+  color: #333;
+  background: #fff;
+  padding: 1em;
+  display: inline-block;
+  transition: 0.4s all;
+  text-decoration: underline;
+}
+.button:hover,
+#your-hashtag:hover {
+  border-color: #666;
+  color: #666;
+}
+.button:focus,
+#your-hashtag:focus {
+  outline: none;
+}
+#your-hashtag {
+  width: 300px;
+}
+.creepy {
+  color: #666;
+}
+.hashtag {
+  font-weight: bold;
+  font-size: 18px;
+}

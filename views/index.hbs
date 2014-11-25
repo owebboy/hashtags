@@ -1,0 +1,16 @@
+<h1>{{title}}</h1>
+<p class="creepy">Created By <a href="//owebboy.com">owebboy</a></p>
+
+<form action="/yolo" method="post" id="yolo" onsubmit="return validateForm()">
+  <h2>Enter Your Hashtag</h2>
+  <input type="text" name="yourHashtag" id="your-hashtag" placeholder="this is where your # goes">
+
+  <button class="button">Create Your Hashtag!</button>
+</form>
+
+<section class="hashtags">
+  <h2>Hashtags</h2>
+  {{#each list}}
+  <p><span class="hashtag">#{{hashtag}}</span> <br> <span class="creepy">{{id}}</span></p>
+  {{/each}}
+</section>
