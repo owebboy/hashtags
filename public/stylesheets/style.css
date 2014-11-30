@@ -6,7 +6,9 @@ a {
   color: #666;
 }
 .button,
-#your-hashtag {
+#input,
+.cancel,
+.delete {
   font-family: monospace;
   border: 1px solid #333;
   color: #333;
@@ -17,22 +19,48 @@ a {
   text-decoration: underline;
 }
 .button:hover,
-#your-hashtag:hover {
+#input:hover,
+.cancel:hover,
+.delete:hover {
   border-color: #666;
   color: #666;
 }
 .button:focus,
-#your-hashtag:focus {
+#input:focus,
+.cancel:focus,
+.delete:focus {
   outline: none;
 }
-#your-hashtag {
+#input {
   width: 300px;
 }
-.button {
+.id {
+  text-decoration: none;
+}
+.id:hover {
+  text-decoration: underline;
+}
+.button,
+.cancel,
+.delete {
   background: #7fdbff;
 }
-.button:hover {
+.button:hover,
+.cancel:hover,
+.delete:hover {
   background: #fff;
+}
+.cool-button,
+.cancel,
+.delete {
+  margin-top: 1em;
+  padding: 0.8em 1em;
+}
+.cancel {
+  background: #ffa500;
+}
+.delete {
+  background: #f00;
 }
 .creepy {
   color: #666;

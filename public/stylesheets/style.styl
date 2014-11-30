@@ -19,14 +19,33 @@ a
   &:focus
     outline none
 
-#your-hashtag
+#input
   @extend .button
   width 300px
+
+.id
+  text-decoration none
+  &:hover
+    text-decoration underline
 
 .button
   background #7FDBFF
   &:hover
     background #fff
+
+.cool-button
+  margin-top 1em
+  padding .8em 1em
+
+.cancel
+  @extend .button
+  @extend .cool-button
+  background orange
+
+.delete
+  @extend .button
+  @extend .cool-button
+  background red
 
 .creepy
   color #666

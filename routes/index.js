@@ -1,5 +1,6 @@
 var express = require('express');
-var router = express.Router();
+var filter  = require('bad-words');
+var router  = express.Router();
 
 // mongoose
 var mongoose = require('mongoose');
@@ -15,7 +16,7 @@ var hashTag = mongoose.model('hashTag', hashTagSchema);
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  hashTag.find().sort('-created').exec(function(err, hashtags) {
+  hashTag.find().sort('-likes').exec(function(err, hashtags) {
     if (err) return console.log(err);
     console.log(hashtags);
     res.render('index', { title: 'Hashtags', list: hashtags });
@@ -24,7 +25,7 @@ router.get('/', function(req, res) {
 
 /* POST yolo page */
 router.post('/yolo', function(req, res) {
-  var yolo = req.body.yourHashtag;
+  var yolo = filter.clean(req.body.yourHashtag);
   var yoloTag = new hashTag({ hashtag: yolo, created: new Date, likes: 0 });
   yoloTag.save( function(err, yoloTag) {
     if (err) return console.log(err);
@@ -55,6 +56,22 @@ router.get('/like/:id', function(req, res) {
       if (err) return console.log(err);
       res.redirect('/');
     });
+  });
+});
+
+/* Edit Mode */
+router.get('/edit/:id', function(req, res) {
+  hashTag.find({ _id: req.params.id }, function(err, result) {
+    console.log(result);
+    res.render('edit', { result: result });
+  });
+});
+
+/* Post Edit Mode */
+router.post('/edit/:id', function(req, res) {
+  hashTag.findOneAndUpdate({ _id: req.params.id }, { hashtag: filter.clean(req.body.newHashtag) }, { upsert: true }, function(err) {
+    if (err) return console.log(err);
+    res.redirect('/');
   });
 });
 
