@@ -73,6 +73,10 @@ a {
 .creepy {
   margin: 0;
 }
+.smile,
+.frown {
+  color: #333;
+}
 /*
 
   Simple Grid

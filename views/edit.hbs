@@ -1,5 +1,7 @@
 {{#each result}}
 <h1>{{hashtag}}</h1>
+<p>Likes: {{likes}}</p>
+<p>Dislikes: {{dislikes}}</p>
 <form action="/edit/{{id}}" method="post" onsubmit="return validateForm()">
   <h2>Change your hashtag</h2>
   <input type="text" name="newHashtag" id="input" placeholder="#{{hashtag}}">

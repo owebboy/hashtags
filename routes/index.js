@@ -33,13 +33,6 @@ router.post('/yolo', function(req, res) {
   res.redirect('/');
 });
 
-/* START OVER PATH - DELETES ALL HASHTAGS */
-router.get('/del/all', function(req, res) {
-  hashTag.remove({}, function(err) {
-    res.redirect('/');
-  });
-});
-
 /* Delete single hashtag */
 router.get('/del/:id', function(req, res) {
   hashTag.find({ _id: req.params.id }).remove().exec(function() {
@@ -53,6 +46,18 @@ router.get('/like/:id', function(req, res) {
   like.findOne(function (err, hashtag) {
     var liked = hashtag.likes;
     hashTag.findOneAndUpdate({ _id: req.params.id }, { likes: liked + 1 }, { upsert: true }, function(err) {
+      if (err) return console.log(err);
+      res.redirect('/');
+    });
+  });
+});
+
+/* Dislike single hashtag */
+router.get('/dislike/:id', function(req, res) {
+  var dislike = hashTag.where({ _id: req.params.id });
+  dislike.findOne(function (err, hashtag) {
+    var disliked = hashtag.likes;
+    hashTag.findOneAndUpdate({ _id: req.params.id }, { likes: disliked - 1 }, { upsert: true }, function(err) {
       if (err) return console.log(err);
       res.redirect('/');
     });
