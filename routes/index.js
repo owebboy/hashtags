@@ -3,16 +3,7 @@ var filter  = require('bad-words');
 var router  = express.Router();
 
 // mongoose
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://yolo:yolo@proximus.modulusmongo.net:27017/juhuTe7t');
-
-var hashTagSchema = mongoose.Schema({
-  hashtag: String,
-  created: Date,
-  likes: Number
-});
-
-var hashTag = mongoose.model('hashTag', hashTagSchema);
+var hashTag = require('../models/hashtag.js');
 
 /* GET home page. */
 router.get('/', function(req, res) {
