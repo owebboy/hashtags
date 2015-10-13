@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-var debug = require('debug')('bio');
+var debug = require('debug')('hashtags');
 var app = require('../app');
 
 app.set('port', process.env.PORT || 5000);

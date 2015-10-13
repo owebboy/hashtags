@@ -1,10 +1,14 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://url-here');
 
-var hashTagSchema = mongoose.Schema({
+var uri = process.env.MONGOURI;
+
+mongoose.connect(uri);
+
+var HashTagSchema = mongoose.Schema({
 	hashtag: String,
 	created: Date,
-	likes: Number
+	likes: Number,
+	cool: String
 });
 
-module.exports.hashTag = mongoose.model('hashTag', hashTagSchema)
+module.exports = mongoose.model('HashTags', HashTagSchema)
