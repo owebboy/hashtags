@@ -1,9 +1,12 @@
 var express = require('express');
-var filter  = require('bad-words');
 var router  = express.Router();
 
+// censorship is the future
+var profanity = require('profanity-censor');
+var slug = require('slug')
+
 // cool
-var cool = require('cool-ascii-faces')
+var cool = require('cool-ascii-faces');
 
 // mongoose
 var mongoose = require('mongoose');
@@ -20,7 +23,10 @@ router.get('/', function(req, res) {
 
 /* POST yolo page */
 router.post('/yolo', function(req, res) {
-  var yolo = new HashTags({ hashtag: req.body.yourHashtag, created: new Date, likes: 0, cool: cool(), dislikes: 0 });
+  var hashtag = req.body.yourHashtag;
+  var removeHashTag = hashtag.replace(/[^\w\s]/gi, '');
+  var clean = slug(removeHashTag);
+  var yolo = new HashTags({ hashtag: clean, created: new Date, likes: 0, cool: cool(), dislikes: 0 });
   yolo.save( function(err, yoyo) {
     if (err) return console.error(err);
   })
@@ -59,7 +65,10 @@ router.get('/edit/:id', function(req, res) {
 
 /* Post Edit Mode */
 router.post('/edit/:id', function(req, res) {
-  HashTags.findOneAndUpdate({ _id: req.params.id }, { hashtag: filter.clean(req.body.newHashtag) }, { upsert: true }, function(err) {
+  var hashtag = req.body.newHashtag;
+  var removeHashTag = hashtag.replace(/[^\w\s]/gi, '');
+  var clean = slug(removeHashTag);
+  HashTags.findOneAndUpdate({ _id: req.params.id }, { hashtag: clean }, { upsert: true }, function(err) {
     if (err) return console.error(err);
     res.redirect('/');
   });

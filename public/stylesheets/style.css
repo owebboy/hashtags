@@ -1,15 +1,19 @@
 body {
   padding: 50px;
-  font: 14px monospace;
+  font: 14px 'monaco', 'source code pro', monospace;
+  color: #111;
 }
 a {
   color: #666;
+}
+a:hover {
+  color: #888;
 }
 .button,
 #input,
 .cancel,
 .delete {
-  font-family: monospace;
+  font: 14px 'source code pro', monospace;
   border: 1px solid #333;
   color: #333;
   background: #fff;
