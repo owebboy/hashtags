@@ -1,12 +1,19 @@
 <h1>{{title}}</h1>
 <p class="creepy">Created By <a href="//owebboy.com">owebboy</a>. <a href="//github.com/owebboy/hashtags">View on Github</a></p>
 
-<form action="/yolo" method="post" id="yolo">
+<form action="/yolo/{{filter}}" method="post" id="yolo">
   <h2>Enter Your Hashtag</h2>
   <input type="text" name="yourHashtag" id="input" placeholder="this is where your # goes">
 
-  <button class="button" id="newHashtag">Create Your Hashtag!</button>
+  <button class="button submit" id="newHashtag">Create Your Hashtag!</button>
 </form>
+
+<br>
+<section class="section-filter">
+  <a href="/" class="button filter {{#equal filter 'most_liked'}}selected{{/equal}}">liked</a>
+  <a href="/filter/most_disliked" class="button filter {{#equal filter 'most_disliked'}}selected{{/equal}}">disliked</a>
+  <a href="/filter/most_recent" class="button filter {{#equal filter 'most_recent'}}selected{{/equal}}">recent</a>
+</section>
 
 <section class="hashtags">
   <h2>Hashtags</h2>

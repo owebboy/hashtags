@@ -16,13 +16,29 @@ var HashTags = require('../models/hashtag.js');
 router.get('/', function(req, res) {
   HashTags.find({}, {}, { sort: '-likes' }, function(err, tags) {
     if (err) return console.error(err);
-    console.log(tags);
-    res.render('index', { title: 'HashTags', list: tags });
+    res.render('index', { title: 'HashTags', filter: 'most_liked', list: tags });
+  });
+});
+
+/* filters */
+
+/* GET most recent first */
+router.get('/filter/most_recent', function(req, res) {
+  HashTags.find({}, {}, { sort: '-created' }, function(err, tags) {
+    if (err) return console.error(err);
+    res.render('index', { title: 'HashTags', filter: 'most_recent', list: tags });
+  });
+});
+/* GET most disliked first */
+router.get('/filter/most_disliked', function(req, res) {
+  HashTags.find({}, {}, { sort: { 'likes' : 1 } }, function(err, tags) {
+    if (err) return console.error(err);
+    res.render('index', { title: 'HashTags', filter: 'most_disliked', list: tags });
   });
 });
 
 /* POST yolo page */
-router.post('/yolo', function(req, res) {
+router.post('/yolo/:filter', function(req, res) {
   var hashtag = req.body.yourHashtag;
   var removeHashTag = hashtag.replace(/[^\w\s]/gi, '');
   var clean = slug(removeHashTag);
@@ -30,7 +46,13 @@ router.post('/yolo', function(req, res) {
   yolo.save( function(err, yoyo) {
     if (err) return console.error(err);
   })
-  res.redirect('/');
+  if (req.params.filter === 'most_liked') {
+    res.redirect('/');
+  } else if (req.params.filter === 'most_disliked') {
+    res.redirect('/filter/most_disliked');
+  } else if (req.params.filter === 'most_recent') {
+    res.redirect('/filter/most_recent');
+  }
 });
 
 /* Like single hashtag */

@@ -17,7 +17,7 @@ a:hover {
   border: 1px solid #333;
   color: #333;
   background: #fff;
-  padding: 1em;
+  padding: 0.5em;
   display: inline-block;
   transition: 0.4s all;
   text-decoration: underline;
@@ -44,15 +44,19 @@ a:hover {
 .id:hover {
   text-decoration: underline;
 }
-.button,
-.cancel,
-.delete {
-  background: #7fdbff;
+.submit {
+  color: #85144b;
+  border-color: #85144b;
 }
-.button:hover,
-.cancel:hover,
-.delete:hover {
+.filter {
+  background: #7fdbff;
+  text-decoration: none;
+  border-radius: 10px;
+}
+.selected {
   background: #fff;
+  border-color: #666;
+  color: #666;
 }
 .cool-button,
 .cancel,

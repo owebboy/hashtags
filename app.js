@@ -5,6 +5,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var hbs = require('hbs');
 
 // routes
 var routes = require('./routes/index');
@@ -15,6 +16,16 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+
+hbs.registerHelper('equal', function(lvalue, rvalue, options) {
+    if (arguments.length < 3)
+        throw new Error("Handlebars Helper equal needs 2 parameters");
+    if( lvalue!=rvalue ) {
+        return options.inverse(this);
+    } else {
+        return options.fn(this);
+    }
+});
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
