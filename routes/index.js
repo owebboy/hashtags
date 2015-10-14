@@ -29,7 +29,8 @@ router.post('/yolo', function(req, res) {
 
 /* Like single hashtag */
 router.get('/like/:id', function(req, res) {
-  like.findOne({ _id: req.params.id }, function (err, hashtag) {
+  HashTags.findOne({ _id: req.params.id }, function (err, hashtag) {
+    if (err) return console.error(err);
     var liked = hashtag.likes;
     HashTags.findOneAndUpdate({ _id: req.params.id }, { likes: liked + 1 }, { upsert: true }, function(err) {
       if (err) return console.error(err);
@@ -40,7 +41,7 @@ router.get('/like/:id', function(req, res) {
 
 /* Dislike single hashtag */
 router.get('/dislike/:id', function(req, res) {
-  dislike.findOne({ _id: req.params.id }, function (err, hashtag) {
+  HashTags.findOne({ _id: req.params.id }, function (err, hashtag) {
     var disliked = hashtag.likes;
     HashTags.findOneAndUpdate({ _id: req.params.id }, { likes: disliked - 1 }, { upsert: true }, function(err) {
       if (err) return console.error(err);
