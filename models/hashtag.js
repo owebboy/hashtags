@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var uri = process.env.MONGOURI;
+var uri = 'mongodb://g_db/hashtags';
 
 mongoose.connect(uri);
 
